@@ -17,5 +17,6 @@ namespace HTCT_Entities
         public bool IsDeleted { get; set; } = false;
         public DateTime? DeletedDate { get; set; }
         public string? DeletedBy { get; set; }
+
     }
 }

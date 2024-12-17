@@ -17,5 +17,6 @@ namespace HTCT_Entities
         public bool IsHidden { get; set; }
         public string LoaiBanTin { get; set; }
         public int MaAdmin { get; set; }
+
     }
 }

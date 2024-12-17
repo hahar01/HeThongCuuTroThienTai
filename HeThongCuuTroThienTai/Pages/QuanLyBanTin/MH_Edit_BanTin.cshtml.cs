@@ -19,14 +19,10 @@ namespace HeThongCuuTroThienTai.Pages.QuanLyBanTin
             _xuLyBanTin = xuLyBanTin;
         }
 
-        public IActionResult OnGet(int maBanTin)
+        public void OnGet(int maBanTin)
         {
             BanTinAdmin = _xuLyBanTin.LayBanTinAdminTheoId(maBanTin);
-            if (BanTinAdmin == null)
-            {
-                return NotFound();
-            }
-            return Page();
+           
         }
 
         public IActionResult OnPost()

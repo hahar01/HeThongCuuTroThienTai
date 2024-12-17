@@ -18,7 +18,7 @@ namespace HeThongCuuTroThienTai.Pages.QuanLyBanTin
 
         public void OnGet(int maTinTichHop)
         {
-            BanTinTichHop = _xuLyBanTinTichHop.GetBanTinTichHopById(maTinTichHop);
+            BanTinTichHop = _xuLyBanTinTichHop.LayBanTinTichHopById(maTinTichHop);
         }
     }
 }

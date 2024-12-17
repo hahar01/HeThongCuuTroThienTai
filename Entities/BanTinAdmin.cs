@@ -19,6 +19,7 @@ namespace HTCT_Entities
         public string? DeletedBy { get; set; }
         public int MaAdmin { get; set; }
 
+
         public ICollection<BinhLuan> BinhLuans { get; set; }
     }
 }

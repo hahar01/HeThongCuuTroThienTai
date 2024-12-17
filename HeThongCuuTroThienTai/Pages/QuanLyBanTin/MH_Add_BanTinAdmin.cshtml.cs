@@ -32,7 +32,7 @@ namespace HeThongCuuTroThienTai.Pages.QuanLyBanTin
                 ModelState.AddModelError(string.Empty, "Bạn chưa đăng nhập hoặc không phải là Admin.");
                 return Page();
             }
-
+            BanTinAdmin.MaAdmin = int.Parse(maAdmin);
             BanTinAdmin.NgayTao = DateTime.Now;
             _xuLyBanTin.ThemBanTinAdmin(BanTinAdmin);
 

@@ -29,9 +29,9 @@ namespace HTCT_XuLy
         }
 
         // Cập nhật bản tin
-        public void CapNhatBanTinTichHop(BanTinTichHop maTinTichHop)
+        public void CapNhatBanTinTichHop(BanTinTichHop banTinTichHop)
         {
-            _luuTruBanTinTichHop.UpdateBanTinTichHop(maTinTichHop);
+            _luuTruBanTinTichHop.UpdateBanTinTichHop(banTinTichHop);
         }
         // Phương thức lấy bản tin tích hợp
         public List<BanTinTichHop> LayTatCaBanTinTichHop()
@@ -40,7 +40,7 @@ namespace HTCT_XuLy
         }
 
         // Phương thức lấy bản tin tích hợp theo ID
-        public BanTinTichHop GetBanTinTichHopById(int maTinTichHop)
+        public BanTinTichHop LayBanTinTichHopById(int maTinTichHop)
         {
             return _luuTruBanTinTichHop.GetBanTinTichHopById(maTinTichHop);
         }

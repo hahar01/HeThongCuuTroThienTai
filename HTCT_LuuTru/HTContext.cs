@@ -191,10 +191,11 @@ namespace HTCT_LuuTru
                 .WithMany(bt => bt.BinhLuans)
                 .HasForeignKey(bl => bl.MaBanTin);
 
+            // Cấu hình quan hệ một-nhiều giữa Admin và Bản Tin Admin
             modelBuilder.Entity<BanTinAdmin>()
                .HasOne<Admin>()
                .WithMany()
-               .HasForeignKey(bt => bt.MaAdmin);
+               .HasForeignKey(bt => bt.MaAdmin); 
 
             // Cấu hình khóa chính cho bảng tin tích hợp API
             modelBuilder.Entity<BanTinTichHop>()
@@ -207,7 +208,7 @@ namespace HTCT_LuuTru
 
 
             // Cấu hình khóa chính cho bảng gói thanh toán
-            modelBuilder.Entity<GoiThanhToan>()
+            modelBuilder.Entity<GoiThanhToan>()     
                 .HasKey(gd => gd.MaGiaoDich);
         }
 
