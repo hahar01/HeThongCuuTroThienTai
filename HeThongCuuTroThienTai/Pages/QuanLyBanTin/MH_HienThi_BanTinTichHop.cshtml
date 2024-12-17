@@ -1,0 +1,13 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_HienThi_BanTinTichHopModel
+@{
+}
+<div class="container mt-4">
+    <h2>Chi Tiết Bản Tin Tích Hợp</h2>
+    <h4>@Model.BanTinTichHop.TieuDe</h4>
+    <p><strong>Ngày tích hợp:</strong> @Model.BanTinTichHop.NgayTichHop.ToString("dd/MM/yyyy")</p>
+    <p><strong>Nguồn:</strong> @Model.BanTinTichHop.Nguon</p>
+    <p><strong>Liên kết:</strong> <a href="@Model.BanTinTichHop.URL" target="_blank">@Model.BanTinTichHop.URL</a></p>
+
+    <a asp-page="/QuanLyBanTin/MH_DanhSach_BanTinTichHop" class="btn btn-secondary">Quay lại danh sách</a>
+</div>

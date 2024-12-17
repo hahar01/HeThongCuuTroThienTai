@@ -1,0 +1,66 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.XetDuyetGiayPhep.GiayPhep_QuyTuThienModel
+@{
+}
+<h2 class="text-center mb-4">Quản lý Quỹ Từ Thiện</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Hiển thị thông báo lỗi -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Sử dụng lớp "table" từ Bootstrap để tạo bảng có viền và hiệu ứng hover -->
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Tên Quỹ Từ Thiện</th>
+            <th>Trạng Thái Giấy Phép</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quyTuThien in Model.QuyTuThienList)
+        {
+            <tr>
+                <td>@quyTuThien.TenQuyTuThien</td>
+                <td>
+                    @if (quyTuThien.GiayPhep != null && quyTuThien.GiayPhep.TrangThai)
+                    {
+                        <span class="badge bg-success">Đã Duyệt</span>
+                    }
+                    else if (quyTuThien.GiayPhep != null && quyTuThien.GiayPhep.TrangThai == false && quyTuThien.TrangThai == "Từ Chối")
+                    {
+                        <span class="badge bg-danger">Từ Chối</span>
+                    }
+                    else if (quyTuThien.GiayPhep != null && quyTuThien.GiayPhep.TrangThai == false)
+                    {
+                        <span class="badge bg-warning">Chưa Duyệt</span>
+                    }
+                </td>
+                <td>
+                    @if (quyTuThien.GiayPhep != null && !quyTuThien.GiayPhep.TrangThai)
+                    {
+                        <form method="post" asp-page-handler="DuyetGiayPhep">
+                            <input type="hidden" name="maQuyTuThien" value="@quyTuThien.MaQuyTuThien" />
+                            <a href="/XetDuyetGiayPhep/MH_XemGiayPhep_QuyTuThien?maQuyTuThien=@quyTuThien.MaQuyTuThien" class="btn btn-info btn-sm">Xem</a>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Giấy phép đã duyệt</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+﻿@page 
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_Xoa_BanTinAdminModel
+@{
+    ViewData["Title"] = "Xóa Bản Tin";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Xóa Bản Tin</h2>
+
+    <div class="alert alert-warning">
+        Bạn có chắc chắn muốn xóa bản tin này?
+    </div>
+
+    <div>
+        <strong>Tiêu đề:</strong> @Model.BanTinAdmin.TieuDe <br />
+        <strong>Nội dung:</strong> @Model.BanTinAdmin.NoiDung
+    </div>
+
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+        <a asp-page="/QuanLyBanTin/MH_DanhSach_BanTinAdmin" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

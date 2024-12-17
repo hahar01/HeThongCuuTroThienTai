@@ -1,0 +1,44 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.BaoCao.MH_BaoCaoModel
+@{
+    ViewData["Title"] = "Danh Sách Phiếu Thu";
+}
+
+<h1>Danh Sách Đóng Góp - Chiến Dịch: @Model.TenChienDich - Quỹ: @Model.TenQuyTuThien </h1> 
+
+<div class="mb-4">
+    <h3 class="fw-bold">Tổng Số Tiền Đóng Góp: @Model.TongSoTien.ToString("C")</h3>
+</div>
+
+<form method="post" asp-page-handler="DownloadPdf" asp-route-maChienDich="@Model.ChienDich.MaChienDich">
+    <button type="submit" class="btn btn-primary">Tải Báo Cáo PDF</button>
+</form>
+
+@if (Model.DanhSachPhieuThu != null && Model.DanhSachPhieuThu.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Phiếu Thu</th>                
+                <th>Ngày đóng góp</th>
+                <th>Người đóng góp</th>
+                <th>Số Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var phieu in Model.DanhSachPhieuThu)
+            {
+                <tr>
+                    <td>@phieu.MaPhieuThu</td>                    
+                    <td>@phieu.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@Model.TenNguoiDung</td>
+                    <td>@phieu.SoTien.ToString("C")</td>               
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có đóng góp.</p>
+}

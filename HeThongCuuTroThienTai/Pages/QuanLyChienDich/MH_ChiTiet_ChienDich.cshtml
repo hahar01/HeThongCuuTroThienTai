@@ -1,0 +1,74 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.MH_ChiTiet_ChienDichModel
+@{
+}
+<div class="container mt-5">
+   
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5">Chi tiết chiến dịch</h1>
+        <div>
+            <a href="/QuanLyChienDich/MH_Add_ThongTinCon?maChienDich=@Model.ChienDich.MaChienDich" class="btn btn-success me-2">Tạo Thông báo</a>
+            <a href="/QuanLyChienDich/MH_DanhSach_ChienDich?maChienDich=@Model.ChienDich.MaChienDich" class="btn btn-sm btn-outline-secondary">Trở lại</a>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <h2 class="h4">Tên chiến dịch:</h2>
+        <p class="fs-5 text-primary">@Model.ChienDich.TenChienDich</p>
+
+        <h2 class="h4">Mô tả:</h2>
+        <p class="fs-5">@Model.ChienDich.MoTa</p
+
+        <h2 class="h4">Số tài khoản:</h2>
+        <p class="fs-5">@Model.ChienDich.SoTaiKhoan</p>
+
+        <h2 class="h4">Ngân hàng:</h2>
+        <p class="fs-5">@Model.ChienDich.TenNganHang</p>
+
+        <h2 class="h4">Chi nhánh:</h2>
+        <p class="fs-5">@Model.ChienDich.ChiNhanh</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="h4">Ngày bắt đầu:</h2>
+                <p class="fs-5">@Model.ChienDich.NgayBatDau.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div class="col-md-6">
+                <h2 class="h4">Ngày kết thúc:</h2>
+                <p class="fs-5">@Model.ChienDich.NgayKetThuc.ToString("dd/MM/yyyy")</p>
+            </div>
+        </div>
+        <p><strong>Trạng Thái:</strong> @Model.ChienDich.TrangThai</p>
+    </div>
+
+    <!-- Danh sách thông báo -->
+    <h2 class="h4 mt-5">Thông báo cập nhật:</h2>
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Tên Thông Báo</th>
+                <th>Mô Tả</th>
+                <th>Ngày Tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.ThongBaoChienDichList != null && Model.ThongBaoChienDichList.Any())
+            {
+                @foreach (var thongBao in Model.ThongBaoChienDichList)
+                {
+                    <tr>
+                        <td>@thongBao.TenThongBaoChienDich</td>
+                        <td>@thongBao.MoTa</td>
+                        <td>@thongBao.NgayTao.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">Không có thông báo nào.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

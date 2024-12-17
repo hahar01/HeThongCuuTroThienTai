@@ -1,0 +1,60 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.XetDuyetGiayPhep.GiayPhep_NguoiThuHuongModel
+<h2 class="text-center mb-4">Quản lý Người Thụ Hưởng</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Hiển thị thông báo lỗi -->
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Sử dụng lớp "table" từ Bootstrap để tạo bảng có viền -->
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Tên Người thụ hưởng</th>
+            <th>Trạng Thái Giấy Phép</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var NguoiThuHuong in Model.NguoiThuHuongList)
+        {
+            <tr>
+                <td>@NguoiThuHuong.TenNguoiThuHuong</td>
+                <td>
+                    @if (NguoiThuHuong.GiayPhep != null && NguoiThuHuong.GiayPhep.TrangThai)
+                    {
+                        <span class="badge bg-success">Đã Duyệt</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Chưa Duyệt</span>
+                    }
+                </td>
+                <td>
+                    @if (NguoiThuHuong.GiayPhep != null && !NguoiThuHuong.GiayPhep.TrangThai)
+                    {
+                        <form method="post" asp-page-handler="DuyetGiayPhep">
+                            <input type="hidden" name="maNguoiThuHuong" value="@NguoiThuHuong.MaNguoiThuHuong" />
+                            <a href="/XetDuyetGiayPhep/MH_XemGiayPhep_NguoiThuHuong?maNguoiThuHuong=@NguoiThuHuong.MaNguoiThuHuong" class="btn btn-info btn-sm">Xem</a>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Giấy phép đã duyệt</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

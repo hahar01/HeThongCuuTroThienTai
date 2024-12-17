@@ -1,0 +1,82 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model HeThongCuuTroThienTai.Pages.MH_DanhSach_ChienDichModel
+@{
+    var userRole = HttpContext.Session.GetString("UserRole");
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (userRole == "QuyTuThien")
+{
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+        @if (Model.QuyTuThien?.TrangThai == "Đã Duyệt")
+        {
+            <div class="d-flex justify-content-between mb-3">
+                <a href="/QuanLyChienDich/Add_MH_ChienDich" class="btn btn-primary">Thêm Chiến Dịch</a>
+            </div>
+        }
+
+        <!-- Bảng danh sách chiến dịch -->
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tên Chiến Dịch</th>
+                    <th>Mô Tả</th>
+                    <th>Ngày Bắt Đầu</th>
+                    <th>Ngày Kết Thúc</th>
+                    <th>Trạng thái</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChienDichs)
+                {
+                    <tr>
+                        <td>@item.TenChienDich</td>
+                        <td>@(item.MoTa.Length > 50 ? item.MoTa.Substring(0, 50) + "..." : item.MoTa)</td>
+                        <td>@item.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                        <td>@item.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                        <td>@item.TrangThai</td>
+                        <td>
+                            <a href="/QuanLyChienDich/MH_Add_ThongTinCon?maChienDich=@item.MaChienDich" class="btn btn-sm btn-success">Tạo Thông Báo</a>
+                            <a href="/QuanLyChienDich/MH_ChiTiet_ChienDich?maChienDich=@item.MaChienDich" class="btn btn-sm btn-outline-primary">Xem</a>
+                            @if (item.IsPublic == false && item.TrangThai == "Mới tạo")
+                            {
+                                <form method="post" asp-page-handler="CongKhaiChiendich" style="display:inline-block;">
+                                    <input type="hidden" name="maChienDich" value="@item.MaChienDich" />
+                                    <button type="submit" class="btn btn-sm btn-warning">Công Khai</button>
+                                </form>
+                            }
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>        
+    </div>
+
+}
+else
+{
+    <!-- Hiển thị cảnh báo -->
+    <div class="alert alert-danger mt-4" role="alert">
+        Bạn không có quyền truy cập vào trang này.
+    </div>
+    <!-- Chuyển hướng -->
+    <script>
+        window.location.href = '/Index';
+    </script>
+}

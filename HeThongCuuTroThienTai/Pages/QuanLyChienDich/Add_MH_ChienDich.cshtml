@@ -1,0 +1,66 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.MHThem_QuanLyChienDichModel
+@{
+    ViewData["Title"] = "Thêm Chiến Dịch";
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+    <form method="post" class="needs-validation" novalidate>
+        <div class="form-group mb-4">
+            <label for="TenChienDich" class="form-label">Tên Chiến Dịch</label>
+            <input type="text" id="TenChienDich" name="TenChienDich" class="form-control" placeholder="Nhập tên chiến dịch" required />
+            <div class="invalid-feedback">Vui lòng nhập tên chiến dịch.</div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="MoTa" class="form-label">Mô Tả</label>
+            <textarea id="MoTa" name="MoTa" class="form-control" rows="6" placeholder="Nhập mô tả chiến dịch" required></textarea>
+            <div class="invalid-feedback">Vui lòng nhập mô tả.</div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="SoTaiKhoan" class="form-label">Số tài khoản</label>
+            <input type="text" id="SoTaiKhoan" name="SoTaiKhoan" class="form-control" placeholder="Nhập số tài khoản" required />
+            <div class="invalid-feedback">Vui lòng nhập số tài khoản.</div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="TenNganHang" class="form-label">Tên Ngân hàng</label>
+            <input type="text" id="TenNganHang" name="TenNganHang" class="form-control" placeholder="Nhập tên Ngân hàng" required />
+            <div class="invalid-feedback">Vui lòng nhập tên Ngân hàng.</div>
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="ChiNhanh" class="form-label">Tên Chi nhánh</label>
+            <input type="text" id="ChiNhanh" name="ChiNhanh" class="form-control" placeholder="Nhập tên Chi nhánh" required />
+            <div class="invalid-feedback">Vui lòng nhập tên Chi nhánh.</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label for="NgayBatDau" class="form-label">Ngày Bắt Đầu</label>
+                <input type="date" id="NgayBatDau" name="NgayBatDau" class="form-control" required />
+                <div class="invalid-feedback">Vui lòng chọn ngày bắt đầu.</div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <label for="NgayKetThuc" class="form-label">Ngày Kết Thúc</label>
+                <input type="date" id="NgayKetThuc" name="NgayKetThuc" class="form-control" required />
+                <div class="invalid-feedback">Vui lòng chọn ngày kết thúc.</div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <button type="submit" class="btn btn-success me-2">Lưu</button>
+            <a href="/QuanLyChienDich/MH_DanhSach_ChienDich" class="btn btn-secondary">Quay Lại</a>
+        </div>
+    </form>
+</div>

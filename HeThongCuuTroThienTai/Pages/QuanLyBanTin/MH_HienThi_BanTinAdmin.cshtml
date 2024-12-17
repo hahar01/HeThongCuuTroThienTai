@@ -1,0 +1,15 @@
+﻿@page 
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_HienThi_BanTinAdminModel
+@{
+
+}
+
+<div class="container mt-4">
+    <h2>@Model.BanTinAdmin.TieuDe</h2>
+    <p><strong>Ngày tạo:</strong> @Model.BanTinAdmin.NgayTao.ToString("dd/MM/yyyy")</p>
+    <p><strong>Nội dung:</strong></p>
+    <p style="white-space: pre-wrap;">@Model.BanTinAdmin.NoiDung</p>
+    <p>@Model.BanTinAdmin.NoiDung</p>
+
+    <a asp-page="/QuanLyBanTin/MH_DanhSach_BanTinAdmin" class="btn btn-secondary">Quay lại danh sách</a>
+</div>

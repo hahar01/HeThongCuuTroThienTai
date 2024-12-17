@@ -1,0 +1,49 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.Public.MH_XemTinModel
+@{
+}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="/Public/MH_Trang_Bao" class="btn btn-success me-2">Quay lại</a>
+        </div>    
+    </div>
+    <h2>@Model.BanTin.TieuDe</h2>
+    <p><strong>Ngày tạo:</strong> @Model.BanTin.NgayTao.ToString("dd/MM/yyyy")</p>
+    <p><strong>Nội dung:</strong></p>
+    <p style="white-space: pre-wrap;">@Model.BanTin.NoiDung</p>
+    <p>@Model.BanTin.NoiDung</p>
+
+    <hr />
+    <h3>Bình luận</h3>
+
+    @if (Model.BinhLuans != null && Model.BinhLuans.Any())
+    {
+        foreach (var binhLuan in Model.BinhLuans)
+        {
+            <div class="mb-3 p-3 border rounded">
+                <p><strong>@binhLuan.NguoiBinhLuan</strong> - @binhLuan.ThoiGian.ToString("dd/MM/yyyy HH:mm")</p>
+                <p>@binhLuan.NoiDung</p>
+                <form method="post">
+                    <input type="hidden" name="maBinhLuan" value="@binhLuan.MaBinhLuan" />
+                    <input type="hidden" name="maBanTin" value="@Model.BanTin.MaBanTin" />
+                    <button type="submit" asp-page-handler="XoaBinhLuan" class="btn btn-danger btn-sm">Xóa</button>
+                    <button type="button" class="btn btn-warning btn-sm" onclick="suaBinhLuan(@binhLuan.MaBinhLuan, '@binhLuan.NoiDung')">Sửa</button>
+                </form>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Chưa có bình luận nào.</p>
+    }
+
+    <hr />
+    <h4>Viết bình luận</h4>
+    <form method="post">
+        <input type="hidden" name="maBanTin" value="@Model.BanTin.MaBanTin" />
+        <textarea name="NoiDungBinhLuan" class="form-control" rows="3" required></textarea>
+        <input type="text" name="NguoiBinhLuan" class="form-control mt-2" placeholder="Tên của bạn" required />
+        <button type="submit" asp-page-handler="ThemBinhLuan" class="btn btn-primary mt-2">Gửi</button>
+    </form>
+</div>

@@ -1,0 +1,94 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.Public.MH_Trang_BaoModel
+@{   
+}
+
+<div class="container mt-4">
+    <h1>Bản Tin</h1>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (Model.BanTinAdmin != null && Model.BanTinAdmin.Any())
+    {
+    //Hiển thị bài viết nổi bật
+    <section class="featured-news mt-5">
+        @if (Model.BanTinNoiBat != null)
+        {
+            <div class="card mb-4">
+              
+                <div class="card-body">
+                    <h2 class="card-title">@Model.BanTinNoiBat.TieuDe</h2>
+                    <p class="card-text">
+                        @(Model.BanTinNoiBat.NoiDung.Length > 200
+                            ? Model.BanTinNoiBat.NoiDung.Substring(0, 200) + "..."
+                            : Model.BanTinNoiBat.NoiDung)
+                    </p>
+                    <a href="/Public/MH_XemTin?maBanTin=@Model.BanTinNoiBat.MaBanTin" class="btn btn-primary">Xem chi tiết</a>
+                </div>
+            </div>
+        }
+    </section>
+
+    //Hiển thị danh sách các bài viết khác
+    <section class="other-news mt-5">
+        <div class="row">
+            @foreach (var item in Model.BanTinAdmin.Where(b => b != Model.BanTinNoiBat))
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                      
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TieuDe</h5>
+                            <p class="card-text">
+                                @(item.NoiDung.Length > 100
+                                    ? item.NoiDung.Substring(0, 100) + "..."
+                                    : item.NoiDung)
+                            </p>
+                            <a href="/Public/MH_XemTin?maBanTin=@item.MaBanTin" class="btn btn-outline-primary btn-sm">Xem</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+    <section class="two-column-news mt-5">
+        <div class="row">
+            <!-- Cột lớn bên trái -->
+            <div class="col-md-8">
+                @foreach (var item in Model.BanTinAdmin.Where(b => b != Model.BanTinNoiBat))
+                {
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TieuDe</h5>
+                            <p class="card-text">
+                                @(item.NoiDung.Length > 100
+                                    ? item.NoiDung.Substring(0, 100) + "..."
+                                    : item.NoiDung)
+                            </p>
+                            <a href="/Public/MH_XemTin?maBanTin=@item.MaBanTin" class="btn btn-outline-primary btn-sm">Xem</a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Cột nhỏ bên phải -->
+            <div class="col-md-4">
+                <h4>Tin tích hợp</h4>
+                @foreach (var item in Model.BanTinTichHopList.Take(3))
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TieuDe</h5>
+                            <a href="/Public/MH_XemTin?maBanTin=@item.MaTinTichHop" class="btn btn-outline-primary btn-sm">Xem</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    }
+    </section>
+</div>

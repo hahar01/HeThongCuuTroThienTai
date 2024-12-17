@@ -1,0 +1,31 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_Add_BanTinAdminModel
+@{
+}
+<div class="container mt-4">
+    <h2 class="text-center">Tạo Bản Tin Mới</h2>
+
+    <form method="post">
+        
+        <div class="form-group mb-4">
+            <label asp-for="BanTinAdmin.TieuDe">Tiêu đề</label>
+            <input asp-for="BanTinAdmin.TieuDe" class="form-control" type="text" placeholder="Nhập tiêu đề bản tin..." required />
+            <span asp-validation-for="BanTinAdmin.TieuDe" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="BanTinAdmin.NoiDung">Nội Dung Bản Tin</label>
+            <textarea asp-for="BanTinAdmin.NoiDung" class="form-control" rows="5" placeholder="Nhập nội dung bản tin..."></textarea>
+            <span asp-validation-for="BanTinAdmin.NoiDung" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="BanTinAdmin.IsHidden">Ẩn bản tin này</label>
+            <input asp-for="BanTinAdmin.IsHidden" class="form-check-input" type="checkbox" />
+            <span asp-validation-for="BanTinAdmin.IsHidden" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu Bản Tin</button>
+        <a asp-page="/QuanLyBanTin/MH_DanhSach_BanTinAdmin" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.MH_BanDoModel
+@{
+}
+<h1>Bản Đồ Azure Maps</h1>
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<script>
+    // Khởi tạo bản đồ Azure Maps
+    var map = new atlas.Map('map', {
+        center: [108.2772, 14.0583], // Tọa độ Hà Nội (Kinh độ, Vĩ độ)
+        zoom: 6,
+        style: 'road', // Kiểu bản đồ: road, satellite, hybrid
+        authOptions: {
+            authType: 'subscriptionKey',
+            subscriptionKey: 'BAVLbxrduZGan2NZdb5x2iPagrW6VsuK9ugtmHVtYiOg3Ib8l15bJQQJ99ALACYeBjFx5reYAAAgAZMP1QEX'
+        }
+    });
+
+    map.events.add('ready', function () {
+        fetch('/rss/api') // Endpoint Razor Page trả về dữ liệu JSON
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(location => {
+                    // Thêm marker lên bản đồ
+                    var marker = new atlas.HtmlMarker({
+                        position: [location.Longitude, location.Latitude],
+                        text: location.Title
+                    });
+                    map.markers.add(marker);
+                });
+            })
+            .catch(error => console.error('Lỗi khi tải RSS:', error));
+    });
+</script>

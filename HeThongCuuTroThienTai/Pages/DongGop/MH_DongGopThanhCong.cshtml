@@ -1,0 +1,33 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.DongGop.MH_DongGopThanhCongModel
+@{
+    ViewData["Title"] = "Đóng Góp Thành Công";
+}
+<h2>Phiếu Thu</h2>
+
+<table class="table">
+    <tr>
+        <th>Mã Phiếu Thu:</th>
+        <td>@Model.PhieuThu.MaPhieuThu</td>
+    </tr>
+    <tr>
+        <th>Ngày Tạo:</th>
+        <td>@Model.PhieuThu.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+    </tr>
+    <tr>
+        <th>Số Tiền:</th>
+        <td>@Model.PhieuThu.SoTien.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Người Dùng:</th>
+        <td>@Model.TenNguoiDung</td> 
+    </tr>
+    <tr>
+        <th>Chiến Dịch:</th>
+        <td>@Model.TenChienDich</td> 
+    </tr>
+    <tr>
+        <th>Quỹ Từ Thiện:</th>
+        <td>@Model.TenQuyTuThien</td> 
+    </tr>
+</table>

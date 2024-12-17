@@ -1,0 +1,47 @@
+﻿@page
+@model DangNhapModel
+@{   
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    var message = TempData["ErrorMessage"].ToString();
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded">
+                <div class="card-header text-center bg-white">
+                    <h3 class="mb-0 text-dark font-weight-bold">Đăng Nhập</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="p-4">
+                        <div class="form-group">
+                            <label for="Email" class="font-weight-bold">Email:</label>
+                            <input type="email" name="Email" id="Email" class="form-control" placeholder="Nhập email của bạn" required />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="MatKhau" class="font-weight-bold">Mật khẩu:</label>
+                            <input type="password" name="MatKhau" id="MatKhau" class="form-control" placeholder="Nhập mật khẩu của bạn" required />
+                        </div>
+                      
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
+                        </div>
+                    </form>
+
+                    @if (ViewData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger mt-3 text-center">
+                            @ViewData["ErrorMessage"]
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-center">
+                    <small class="text-muted">Chưa có tài khoản? <a href="/LoginLogout/DangKy_NguoiDung" class="text-primary">Đăng ký ngay</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

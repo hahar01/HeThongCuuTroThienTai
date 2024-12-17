@@ -1,0 +1,56 @@
+﻿@page
+@using Microsoft.AspNetCore.Http;
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_DanhSach_BanTinAdminModel
+@{
+    var userRole = HttpContext.Session.GetString("UserRole");
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h1>Danh Sách Bản Tin</h1>
+
+<a href="/QuanLyBanTin/MH_Add_BanTinAdmin" class="btn btn-primary mb-3">Tạo Bản Tin Mới</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tiêu Đề</th>
+            <th>Ngày Tạo</th>
+            <th>Trạng Thái</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BanTinAdmins)
+        {
+            <tr>
+                <td>@item.TieuDe</td>
+                <td>@item.NgayTao.ToString("dd/MM/yyyy")</td>
+                <td>@(item.IsHidden ? "Ẩn" : "Hiện")</td>
+                <td>
+                    <a href="/QuanLyBanTin/MH_HienThi_BanTinAdmin?maBanTin=@item.MaBanTin" class="btn btn-outline-primary btn-sm">Xem</a> |
+                    <a href="/QuanLyBanTin/MH_Edit_BanTin?maBanTin=@item.MaBanTin" class="btn btn-warning btn-sm">Chỉnh sửa</a> |
+                    <a href="/QuanLyBanTin/MH_Xoa_BanTinAdmin?maBanTin=@item.MaBanTin" class="btn btn-danger btn-sm">Xóa</a>
+                    @if (!item.IsPublic)
+                    {
+                        <form method="post" asp-page-handler="CongKhaiBanTinAdmin" style="display:inline-block;">
+                            <input type="hidden" name="maBanTin" value="@item.MaBanTin" />
+                            <button type="submit" class="btn btn-sm btn-warning">Công Khai</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

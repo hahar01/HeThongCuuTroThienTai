@@ -1,0 +1,49 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model HeThongCuuTroThienTai.Pages.MH_Trang_ChienDichModel
+@{
+}
+
+<div class="container mt-5">
+    <!-- Tiêu đề trang -->
+    <h1 class="display-4 text-center mb-4">Danh sách chiến dịch</h1>
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (Model.ChienDich != null && Model.ChienDich.Any())
+    {
+    <!-- Bảng danh sách chiến dịch -->
+    <table class="table table-bordered table-hover shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Tên Chiến Dịch</th>
+                <th>Mô Tả</th>
+                <th>Bắt Đầu</th>
+                <th>Kết Thúc</th>
+                <th>Trạng thái</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ChienDich)
+            {
+                <tr>
+                    <td class="text-primary fw-bold">@item.TenChienDich</td>
+                    <td>@(item.MoTa.Length > 100 ? item.MoTa.Substring(0, 100) + "..." : item.MoTa)</td>
+                    <td>@item.NgayBatDau.ToString("dd/MM/yyyy")</td>
+                    <td>@item.NgayKetThuc.ToString("dd/MM/yyyy")</td>
+                    <td>@item.TrangThai</td>
+                        <td class="d-flex justify-content-between">
+                        <a href="/Public/MH_Xem_ChienDich?maChienDich=@item.MaChienDich" class="btn btn-outline-primary btn-sm">Xem</a>
+                        <a href="/BaoCao/MH_BaoCao?maChienDich=@item.MaChienDich" class="btn btn-outline-primary btn-sm">Thống kê</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>
+

@@ -1,0 +1,39 @@
+﻿@page
+@model DangKy_NguoiDungModel
+@{
+}
+@{
+    ViewData["Title"] = "Đăng Ký";
+}
+
+<h2 class ="text-center mb-4">Đăng Ký Tài Khoản Người đóng góp</h2>
+
+<form method="post" class="bg-light p-4 rounded shadow-sm">
+    <div class="form-group">
+        <label for="TenNguoiDung" class="font-weight-bold">Tên Người Dùng:</label>
+        <input type="text" name="NguoiDung.HoTen" class="form-control" placeholder="Nhập tên người dùng" />
+    </div>
+
+    <div class="form-group">
+        <label for="DiaChi" class="font-weight-bold">Địa Chỉ:</label>
+        <input type="text" name="NguoiDung.DiaChi" class="form-control" placeholder="Nhập địa chỉ" />
+    </div>
+
+    <div class="form-group">
+        <label for="SDT" class="font-weight-bold">Số Điện Thoại:</label>
+        <input type="text" name="NguoiDung.SDT" class="form-control" placeholder="Nhập số điện thoại" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email" class="font-weight-bold">Email:</label>
+        <input type="email" name="NguoiDung.Email" class="form-control" placeholder="Nhập email" />
+    </div>
+
+    <div class="form-group">
+        <label for="MatKhau" class="font-weight-bold">Mật Khẩu:</label>
+        <input type="password" name="NguoiDung.MatKhau" class="form-control" placeholder="Nhập mật khẩu" />
+    </div>
+
+    <div class="text-center mt-4">
+    <button type="submit" class="btn btn-primary">Đăng Ký</button>
+</form>

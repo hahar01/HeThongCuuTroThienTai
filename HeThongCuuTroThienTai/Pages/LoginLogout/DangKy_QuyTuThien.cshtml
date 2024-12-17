@@ -1,0 +1,70 @@
+﻿@page
+@model DangKy_QuyTuThienModel
+@{
+}
+@{
+    ViewData["Title"] = "Đăng Ký";
+}
+
+<h2 class="text-center mb-4">Đăng Ký Tài Khoản Quỹ Từ Thiện</h2>
+
+<form method="post" class="bg-light p-4 rounded shadow-sm">
+    <div class="form-group">
+        <label for="TenQuyTuThien" class="font-weight-bold">Tên Quỹ Từ Thiện:</label>
+        <input type="text" name="QuyTuThien.TenQuyTuThien" class="form-control" placeholder="Nhập tên quỹ từ thiện" />
+    </div>
+
+    <div class="form-group">
+        <label for="DiaChi" class="font-weight-bold">Địa Chỉ:</label>
+        <input type="text" name="QuyTuThien.DiaChi" class="form-control" placeholder="Nhập địa chỉ" />
+    </div>
+
+    <div class="form-group">
+        <label for="SDT" class="font-weight-bold">Số Điện Thoại:</label>
+        <input type="text" name="QuyTuThien.SDT" class="form-control" placeholder="Nhập số điện thoại" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email" class="font-weight-bold">Email:</label>
+        <input type="email" name="QuyTuThien.Email" class="form-control" placeholder="Nhập email" />
+    </div>
+
+    <div class="form-group">
+        <label for="Website" class="font-weight-bold">Website:</label>
+        <input type="text" name="QuyTuThien.Website" class="form-control" placeholder="Nhập website" />
+    </div>
+
+    <div class="form-group">
+        <label for="MatKhau" class="font-weight-bold">Mật Khẩu:</label>
+        <input type="password" name="QuyTuThien.MatKhau" class="form-control" placeholder="Nhập mật khẩu" />
+    </div><br />
+
+    <h3>Thông Tin Giấy Phép</h3> 
+    <div class="form-group">
+        <label for="SoQuyetDinh" class="font-weight-bold">Số Giấy Phép:</label>
+        <input type="text" name="GiayPhep.SoQuyetDinh" class="form-control" placeholder="Nhập số giấy phép" />
+    </div>
+
+    <div class="form-group">
+        <label for="NgayQuyetDinh" class="font-weight-bold">Ngày Giấy Phép:</label>
+        <input type="date" name="GiayPhep.NgayQuyetDinh" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="NgayHetHan" class="font-weight-bold">Ngày Hết Hạn:</label>
+        <input type="date" name="GiayPhep.NgayHetHan" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="CoQuanCap" class="font-weight-bold">Cơ Quan Cấp Giấy Phép:</label>
+        <input type="text" name="GiayPhep.CoQuanCap" class="form-control" placeholder="Nhập cơ quan cấp giấy phép" />
+    </div>
+
+    <div class="form-group">
+        <label for="HinhAnh" class="font-weight-bold">Tải Hình Ảnh Giấy Phép:</label>
+        <input type="file" name="GiayPhep.HinhAnh" class="form-control" />
+    </div>
+
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-lg">Đăng Ký</button>
+</form>

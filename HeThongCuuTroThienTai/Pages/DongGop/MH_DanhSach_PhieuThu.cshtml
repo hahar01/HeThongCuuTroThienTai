@@ -1,0 +1,43 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.DongGop.MH_DanhSach_PhieuThuModel
+@{
+    ViewData["Title"] = "Danh Sách Phiếu Thu";
+}
+
+<h1>Danh Sách Đóng Góp</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a href="/DongGop/MH_Add_DongGop" class="btn btn-primary">Đóng góp</a>
+</div>
+
+
+@if (Model.DanhSachPhieuThu.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Phiếu Thu</th>
+                <th>Ngày Tạo</th>
+                <th>Số Tiền</th>
+                <th>Chiến Dịch</th>
+                <th>Quỹ Từ Thiện</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var phieu in Model.DanhSachPhieuThu)
+            {
+                <tr>
+                    <td>@phieu.MaPhieuThu</td>
+                    <td>@phieu.NgayTao.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@phieu.SoTien.ToString("C")</td>
+                    <td>@Model._xuLyChienDich.LayTenChienDich(phieu.MaChienDich)</td>
+                    <td>@Model._xuLyQuyTuThien.LayTenQuyTuThien(phieu.MaQuyTuThien)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Không có phiếu thu nào.</p>
+}

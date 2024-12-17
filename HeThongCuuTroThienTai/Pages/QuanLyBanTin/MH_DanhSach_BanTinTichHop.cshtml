@@ -1,0 +1,33 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.QuanLyBanTin.MH_DanhSach_BanTinTichHopModel
+@{
+}
+<h1>Danh Sách Bản Tin Tích Hợp</h1>
+
+<a href="/QuanLyBanTin/MH_Add_BanTinTichHop" class="btn btn-primary mb-3">Tạo Bản Tin Mới</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tiêu Đề</th>
+            <th>Ngày Tích Hợp</th>
+            <th>Nguồn</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BanTinTichHopList)
+        {
+            <tr>
+                <td>@item.TieuDe</td>
+                <td>@item.NgayTichHop.ToString("dd/MM/yyyy")</td>
+                <td>@item.Nguon</td>
+                <td>
+                    <a href="/QuanLyBanTin/MH_Edit_BanTinTichHop?maTinTichHop=@item.MaTinTichHop" class="btn btn-outline-primary btn-sm">Xem</a> |
+                    <a href="/QuanLyBanTin/MH_Xoa_BanTinTichHop?maTinTichHop=@item.MaTinTichHop" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

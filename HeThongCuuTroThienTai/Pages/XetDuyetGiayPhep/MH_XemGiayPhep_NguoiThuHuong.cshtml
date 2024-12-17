@@ -1,0 +1,44 @@
+﻿@page
+@model HeThongCuuTroThienTai.Pages.XetDuyetGiayPhep.MH_XemGiayPhep_NguoiThuHuongModel
+@{
+}
+<h2>Chi Tiết Người thụ hưởng</h2>
+
+@if (Model.NguoiThuHuong != null && Model.NguoiThuHuong.GiayPhep != null)
+{
+    <p><strong>Tên Quỹ Từ Thiện:</strong> @Model.NguoiThuHuong.TenNguoiThuHuong</p>
+    <p><strong>Giấy Phép:</strong> @Model.NguoiThuHuong.GiayPhep.SoQuyetDinh</p>
+    <p><strong>Ngày Quyết Định:</strong> @Model.NguoiThuHuong.GiayPhep.NgayQuyetDinh</p>
+    <p><strong>Ngày Hết Hạn:</strong> @Model.NguoiThuHuong.GiayPhep.NgayHetHan</p>
+    <p><strong>Cơ quan cấp:</strong> @Model.NguoiThuHuong.GiayPhep.CoQuanCap</p>
+    <p><strong>Trạng Thái Giấy Phép:</strong> @(Model.NguoiThuHuong.GiayPhep.TrangThai ? "Đã Duyệt" : "Chưa Duyệt")</p>
+
+  <div>
+        <!-- Nút Duyệt Giấy Phép -->
+        <div class="d-flex mb-3">
+            @if (!Model.NguoiThuHuong.GiayPhep.TrangThai)
+            {
+                <form method="post" asp-page-handler="DuyetGiayPhep">
+                    <input type="hidden" name="maNguoiThuHuong" value="@Model.NguoiThuHuong.MaNguoiThuHuong" />
+                    <button type="submit" class="btn btn-primary">Duyệt Giấy Phép</button>
+                </form>
+            }
+    
+        </div>
+        <div class="d-flex">
+            <!-- Nút Từ Chối Duyệt Giấy Phép -->
+            @if (!Model.NguoiThuHuong.GiayPhep.TrangThai)
+            {
+                <form method="post" asp-page-handler="TuChoiDuyetGiayPhep">
+                    <input type="hidden" name="maNguoiThuHuong" value="@Model.NguoiThuHuong.MaNguoiThuHuong" />
+                    <button type="submit" class="btn btn-danger">Từ Chối Duyệt</button>
+                </form>
+            }                
+        </div>
+    </div>
+    
+}
+else
+{
+    <p>Thông tin quỹ từ thiện hoặc giấy phép không tìm thấy.</p>
+}
